@@ -10,6 +10,25 @@
   let game=load();
   const view={reviewShown:false,openedItem:null};
 
+  /* Для вертикальных фонов сначала проверяем существование файла.
+     Если его нет, CSS оставляет горизонтальный фон ПК. */
+  const mobileBackgrounds={
+    "--mobile-entrance":"bg_entrance_mobile.webp",
+    "--mobile-technologist":"bg_technologist_office_mobile.webp",
+    "--mobile-meeting":"bg_meeting_room_mobile.webp",
+    "--mobile-workshop":"bg_workshop_mobile.webp"
+  };
+  Object.entries(mobileBackgrounds).forEach(([variable,file])=>{
+    const picture=new Image();
+    picture.onload=()=>{
+      document.documentElement.style.setProperty(variable,
+        'url("assets/backgrounds/'+file+'")');
+    };
+    picture.onerror=()=>{};
+    picture.src="assets/backgrounds/"+file;
+  });
+
+
   function load() {
     try {const raw=localStorage.getItem(storageKey);return raw?logic.validateState(JSON.parse(raw)):logic.initialState();}
     catch (_) {return logic.initialState();}
