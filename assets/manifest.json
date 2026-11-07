@@ -1,12 +1,12 @@
 {
   "version": 1,
   "status": "proposed",
-  "note": "Первичный реестр из docs/ASSETS.md. Файлы изображений пока не подтверждены; записи не являются утвержденными ассетами.",
+  "note": "Файлы CH1-IMG-002,011,012,013,015 импортированы из утверждённого реестра Google Drive; остальные записи остаются предложениями. Игровые реакции не менялись.",
   "assets": {
     "bg_entrance": {
       "type": "background",
-      "path": "assets/backgrounds/bg_entrance.webp",
-      "status": "proposed"
+      "path": "assets/backgrounds/CH1-IMG-002_entrance_turnstiles.png",
+      "status": "approved"
     },
     "bg_technologist_office": {
       "type": "background",
@@ -27,22 +27,29 @@
       "type": "character",
       "character": "irina",
       "emotion": "neutral",
-      "path": "assets/characters/irina_neutral.png",
-      "status": "proposed"
+      "path": "assets/characters/CH1-IMG-013_irina_neutral.png",
+      "status": "approved"
     },
     "andrey_neutral": {
       "type": "character",
       "character": "andrey",
       "emotion": "neutral",
-      "path": "assets/characters/andrey_neutral.png",
-      "status": "proposed"
+      "path": "assets/characters/CH1-IMG-012_andrey_neutral.png",
+      "status": "approved"
     },
     "marina_neutral": {
       "type": "character",
       "character": "marina",
       "emotion": "neutral",
-      "path": "assets/characters/marina_neutral.png",
-      "status": "proposed"
+      "path": "assets/characters/CH1-IMG-011_marina_neutral.png",
+      "status": "approved"
+    },
+    "irina_friendly": {
+      "type": "character",
+      "character": "irina",
+      "emotion": "friendly",
+      "path": "assets/characters/CH1-IMG-015_irina_friendly.png",
+      "status": "approved"
     }
   }
 }
