@@ -116,12 +116,12 @@ test("Фоны S00 и S01 имеют реальные пути в CSS",()=>{
 });
 test("S01 показывает отдельную видимую иллюстрацию из assets",()=>{
   assert.match(app.innerHTML,/class="scene-illustration"/);
-  assert.match(app.innerHTML,/src="assets\\/backgrounds\\/CH1-IMG-005_technology_office\\.webp"/);
+  assert.match(app.innerHTML,/src="assets\/backgrounds\/CH1-IMG-005_technology_office\.webp"/);
 });
 click("reset");
 test("S00 показывает изображение входной зоны, не только CSS-фон",()=>{
   assert.match(app.innerHTML,/class="scene-illustration"/);
-  assert.match(app.innerHTML,/src="assets\\/backgrounds\\/CH1-IMG-002_entrance\\.png"/);
+  assert.match(app.innerHTML,/src="assets\/backgrounds\/CH1-IMG-002_entrance\.png"/);
 });
 const passed=checks.filter(x=>x.passed).length;
 console.log("\n"+passed+"/"+checks.length+" проверок пройдено");
