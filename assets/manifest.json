@@ -1,17 +1,17 @@
 {
   "version": 1,
-  "status": "proposed",
-  "note": "Первичный реестр из docs/ASSETS.md. Файлы изображений пока не подтверждены; записи не являются утвержденными ассетами.",
+  "status": "partial",
+  "note": "Три фона и три портрета Ирины доступны в main. Остальные записи требуют проверки наличия файлов.",
   "assets": {
     "bg_entrance": {
       "type": "background",
-      "path": "assets/backgrounds/bg_entrance.webp",
-      "status": "proposed"
+      "path": "assets/backgrounds/CH1-IMG-002_entrance.png",
+      "status": "approved"
     },
     "bg_technologist_office": {
       "type": "background",
-      "path": "assets/backgrounds/bg_technologist_office.webp",
-      "status": "proposed"
+      "path": "assets/backgrounds/CH1-IMG-005_technology_office.webp",
+      "status": "approved"
     },
     "bg_meeting_room": {
       "type": "background",
@@ -27,8 +27,8 @@
       "type": "character",
       "character": "irina",
       "emotion": "neutral",
-      "path": "assets/characters/irina_neutral.png",
-      "status": "proposed"
+      "path": "assets/characters/CH1-IMG-013_irina_neutral.png",
+      "status": "approved"
     },
     "andrey_neutral": {
       "type": "character",
@@ -43,6 +43,25 @@
       "emotion": "neutral",
       "path": "assets/characters/marina_neutral.png",
       "status": "proposed"
+    },
+    "bg_main_screen": {
+      "type": "background",
+      "path": "assets/backgrounds/CH1-IMG-001_main_screen.webp",
+      "status": "approved"
+    },
+    "irina_friendly": {
+      "type": "character",
+      "character": "irina",
+      "emotion": "friendly",
+      "path": "assets/characters/CH1-IMG-015_irina_friendly.png",
+      "status": "approved"
+    },
+    "irina_focused": {
+      "type": "character",
+      "character": "irina",
+      "emotion": "focused",
+      "path": "assets/characters/CH1-IMG-016_irina_focused.png",
+      "status": "approved"
     }
   }
 }
