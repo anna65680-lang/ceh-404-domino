@@ -81,12 +81,27 @@
       Array.from({length:9},(_,i)=>'<span class="'+(i===current?'active':i<current?'passed':'')+
       '" title="Сцена S0'+i+'">S0'+i+'</span>').join('')+'</nav>';
   }
+  /* Видимая иллюстрация — обычный <img>, а не почти незаметная CSS-подложка.
+     Показываем только реально добавленные в проект файлы. */
+  function sceneIllustration(id) {
+    const assetId=sceneBackgroundIds[id];
+    if(!assetId||!bundledAssets[assetId])return "";
+    const image=assetPath(assetId,bundledAssets[assetId]);
+    const labels={
+      S00:"Входная зона предприятия",
+      S01:"Технологический отдел",S02:"Технологический отдел"
+    };
+    return '<figure class="scene-illustration">'+
+      '<img src="'+esc(image)+'" alt="'+esc(labels[id]||"Иллюстрация сцены")+
+      '" loading="eager" decoding="async" onerror="this.parentElement.classList.add(\'image-missing\')">'+
+      '<figcaption>Изображение сцены не загрузилось: '+esc(image)+'</figcaption></figure>';
+  }
   function sceneShell(id,inner) {
     return '<div class="scene-head"><div class="scene-meta"><span>ГЛАВА 1 · '+esc(id)+
       '</span><span class="status '+(Number(id.slice(1))>=5?'draft':'')+'">'+esc(script.status[id]||"")+
       '</span></div><h1>'+esc(script[id].heading)+'</h1>'+
       '<p class="location">'+esc(script[id].location||script.S00.label)+'</p></div>'+
-      '<section class="panel scene" data-scene="'+esc(id)+'">'+inner+'</section>';
+      '<section class="panel scene" data-scene="'+esc(id)+'">'+sceneIllustration(id)+inner+'</section>';
   }
   function actions(label,id="") {
     return '<div class="actions">'+button(label,"next",id,"primary")+
