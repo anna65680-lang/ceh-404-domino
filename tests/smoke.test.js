@@ -45,6 +45,27 @@ test("Три профессиональные позиции и вопросы S
   assert.equal(state().askedS03.length,3);
   assert.equal((app.innerHTML.match(/class="speaker"/g)||[]).length,3);
 });
+test("S03 выводит реальные img-пути портретов всех трёх персонажей",()=>{
+  for(const [name,file] of [
+    ["Ирина Соколова","CH1-IMG-013_irina_neutral.png"],
+    ["Андрей Громов","CH1-IMG-012_andrey_neutral.png"],
+    ["Марина Власова","CH1-IMG-011_marina_neutral.png"]
+  ]){
+    assert.ok(app.innerHTML.includes('alt="'+name+'"'),name+" отсутствует в S03");
+    assert.ok(app.innerHTML.includes('src="assets/characters/'+file+'"'),file+" отсутствует в S03");
+  }
+});
+test("Версии скрипта и CSS обновлены для обхода кэша браузера",()=>{
+  const html=source("index.html");
+  assert.match(html,/app\.js\?v=20261108-portraits2/);
+  assert.match(html,/style\.css\?v=20261108-portraits2/);
+});
+test("Страница проверки ассетов ссылается на все три реальных PNG",()=>{
+  const html=source("assets-check.html");
+  for(const file of ["CH1-IMG-013_irina_neutral.png","CH1-IMG-012_andrey_neutral.png","CH1-IMG-011_marina_neutral.png"]){
+    assert.ok(html.includes('src="assets/characters/'+file+'"'));
+  }
+});
 click("next","S04");
 test("Тринадцать инвестиционных карточек",()=>assert.equal((app.innerHTML.match(/class="investment /g)||[]).length,13));
 for(const id of ["A","F"])click("toggle",id);
