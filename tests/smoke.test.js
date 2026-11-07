@@ -80,7 +80,7 @@ test("Итоги главы с собственными решениями",()=>
 click("goBack","S04");
 test("Возврат к S04",()=>assert.equal(state().scene,"S04"));
 click("reset");
-test("Новая игра очищает выборы",()=>assert.deepEqual(state().selectedInvestments,[]));
+test("Новая игра очищает выборы",()=>assert.equal(state().selectedInvestments.length,0));
 test("Сохранение доступно",()=>assert.ok(store.has("ceh404.chapter1.v2")));
 test("L и M дают 0 капитальных затрат, но имеют риски",()=>{
   const b=win.CEH_LOGIC.budget(["L","M"]);
