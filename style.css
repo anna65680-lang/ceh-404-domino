@@ -180,3 +180,25 @@ img{max-width:100%}
   .logo{font-size:21px}.logo strong{font-size:24px}
   .scene-meta{gap:7px}
 }
+
+/* Два кадрирования для каждой локации. ПК: 16:9, телефон: 9:16.
+   Мобильные изображения задаются как переменные, поэтому
+   при их отсутствии сохраняется исходный фон ПК. */
+@media (max-width:660px) {
+  .scene[data-scene="S00"] {
+    background-image:linear-gradient(180deg,#122435dc,#0f2031ef),
+      var(--mobile-entrance, url("assets/backgrounds/bg_entrance.webp"));
+  }
+  .scene[data-scene="S01"],.scene[data-scene="S02"] {
+    background-image:linear-gradient(180deg,#122435e0,#0f2031f0),
+      var(--mobile-technologist, url("assets/backgrounds/bg_technologist_office.webp"));
+  }
+  .scene[data-scene="S03"],.scene[data-scene="S05"] {
+    background-image:linear-gradient(180deg,#122435e0,#0f2031f0),
+      var(--mobile-meeting, url("assets/backgrounds/bg_meeting_room.webp"));
+  }
+  .scene[data-scene="S04"],.scene[data-scene="S06"],.scene[data-scene="S07"] {
+    background-image:linear-gradient(180deg,#122435e2,#0f2031f1),
+      var(--mobile-workshop, url("assets/backgrounds/bg_workshop.webp"));
+  }
+}
