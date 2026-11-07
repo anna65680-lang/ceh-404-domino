@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "status": "proposed",
+  "note": "Первичный реестр из docs/ASSETS.md. Файлы изображений пока не подтверждены; записи не являются утвержденными ассетами.",
+  "assets": {
+    "bg_entrance": {
+      "type": "background",
+      "path": "assets/backgrounds/bg_entrance.webp",
+      "status": "proposed"
+    },
+    "bg_technologist_office": {
+      "type": "background",
+      "path": "assets/backgrounds/bg_technologist_office.webp",
+      "status": "proposed"
+    },
+    "bg_meeting_room": {
+      "type": "background",
+      "path": "assets/backgrounds/bg_meeting_room.webp",
+      "status": "proposed"
+    },
+    "bg_workshop": {
+      "type": "background",
+      "path": "assets/backgrounds/bg_workshop.webp",
+      "status": "proposed"
+    },
+    "irina_neutral": {
+      "type": "character",
+      "character": "irina",
+      "emotion": "neutral",
+      "path": "assets/characters/irina_neutral.png",
+      "status": "proposed"
+    },
+    "andrey_neutral": {
+      "type": "character",
+      "character": "andrey",
+      "emotion": "neutral",
+      "path": "assets/characters/andrey_neutral.png",
+      "status": "proposed"
+    },
+    "marina_neutral": {
+      "type": "character",
+      "character": "marina",
+      "emotion": "neutral",
+      "path": "assets/characters/marina_neutral.png",
+      "status": "proposed"
+    }
+  }
+}
