@@ -123,6 +123,19 @@ test("S00 показывает изображение входной зоны, �
   assert.match(app.innerHTML,/class="scene-illustration"/);
   assert.match(app.innerHTML,/src="assets\/backgrounds\/CH1-IMG-002_entrance\.png"/);
 });
+test("Портреты Андрея и Марины имеют реальные пути в основном реестре",()=>{
+  const registry=JSON.parse(source("assets/manifest.json"));
+  for(const id of ["andrey_neutral","marina_neutral"]){
+    const asset=registry.assets[id];
+    assert.equal(asset.status,"approved");
+    assert.ok(fs.existsSync(path.join(root,asset.path)),asset.path);
+  }
+});
+test("S03 показывает портреты Андрея и Марины из assets",()=>{
+  const code=source("app.js");
+  assert.match(code,/CH1-IMG-012_andrey_neutral/);
+  assert.match(code,/CH1-IMG-011_marina_neutral/);
+});
 const passed=checks.filter(x=>x.passed).length;
 console.log("\n"+passed+"/"+checks.length+" проверок пройдено");
 if(passed!==checks.length)process.exitCode=1;
