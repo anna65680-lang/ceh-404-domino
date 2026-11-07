@@ -33,7 +33,7 @@
   };
   function assetPath(id,fallback) {
     const item=assetRegistry&&assetRegistry.assets&&assetRegistry.assets[id];
-    const path=item&&typeof item.path==="string"?item.path:"";
+    const path=item&&item.status!=="not_use"&&typeof item.path==="string"?item.path:"";
     return /^assets\/(characters|backgrounds|icons)\/[A-Za-z0-9_./-]+$/.test(path)&&!path.includes("..")
       ?path:fallback;
   }
@@ -54,16 +54,16 @@
     picture.onerror=()=>{};
     picture.src=chosen;
   }
-  function avatar(characterKey) {
+  function avatar(characterKey,emotion) {
     const c=script.characters[characterKey];
     if(!c)return '';
     const fallback="assets/characters/"+c.portrait;
-    const id=characterKey+"_"+(c.emotion||"neutral");
+    const id=characterKey+"_"+(emotion||c.emotion||"neutral");
     const image=assetPath(id,fallback);
     return '<div class="character"><div class="character-art"><img alt="" loading="lazy" src="'+esc(image)+
       '" onerror="this.hidden=true"></div><div><strong>'+esc(c.name)+'</strong><small>'+esc(c.role)+'</small></div></div>';
   }
-  function speech(key,text) {return '<div class="speech">'+avatar(key)+'<div class="speech-text">'+p(text)+'</div></div>';}
+  function speech(key,text,emotion) {return '<div class="speech">'+avatar(key,emotion)+'<div class="speech-text">'+p(text)+'</div></div>';}
   function row(label,value) {return '<div class="metric"><span>'+esc(label)+'</span><b>'+esc(value)+'</b></div>';}
   function progress() {
     const current=Number(game.scene.slice(1));
@@ -91,14 +91,14 @@
         '<div class="actions">'+button("Получить пропуск","pass",undefined,"primary")+'</div>';
     } else {
       html+=note('<div class="badge-label">ПРОПУСК · ЦЕХ 404</div>'+
-        '<strong class="badge-name">'+esc(game.playerName)+'</strong><br>Техник-технолог · вводное задание');
+        '<strong class="badge-name">'+esc(game.playerName)+'</strong><br>Техник-технолог · Новый сотрудник');
       html+=actions("Приступить к работе","S01");
     }
     return html+'</div><div class="pass-illustration" aria-hidden="true">404<span>ПРОИЗВОДСТВО · РЕШЕНИЯ · ПОСЛЕДСТВИЯ</span></div></div>';
   }
   function renderS01() {
     const s=script.S01;
-    let html=speech("irina",s.intro.replace("[Имя]",game.playerName));
+    let html=speech("irina",s.intro.replace("[Имя]",game.playerName),game.askedS01.length?"neutral":"friendly");
     html+='<h2>О чём вы хотите спросить?</h2>'+p("Все три вопроса можно задать в любом порядке.","hint");
     html+='<div class="choice-list">';
     s.questions.forEach((q,i)=>{
@@ -124,7 +124,7 @@
     html+='<div class="report-grid">'+s.data.map(x=>
       '<article class="report-item"><span>'+esc(x.label)+'</span><strong>'+esc(x.value)+'</strong>'+
       '<small>'+esc(x.note)+'</small></article>').join('')+'</div>';
-    html+=speech("irina",s.intro)+'<h2>Первоначальный вывод</h2>';
+    html+=speech("irina",s.intro,"focused")+'<h2>Первоначальный вывод</h2>';
     html+='<div class="choice-list">'+s.hypotheses.map((h,i)=>
       button((i+1)+". "+h.label,"hypothesis",h.id,
         "option"+(game.initialHypothesis===h.id?" selected":""))).join('')+'</div>';
