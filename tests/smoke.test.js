@@ -100,19 +100,19 @@ test("Утверждённые изображения в реестре суще
   const registry=JSON.parse(source("assets/manifest.json"));
   for(const [id,item] of Object.entries(registry.assets)){
     if(item.status!=="approved")continue;
-    assert.match(item.path,/^assets\\/(backgrounds|characters|icons)\\//,id);
+    assert.match(item.path,/^assets\/(backgrounds|characters|icons)\//,id);
     assert.ok(fs.existsSync(path.join(root,item.path)),id+" → "+item.path);
   }
 });
 click("pass");
 click("next","S01");
 test("Портрет Ирины виден по реальному пути даже без загрузки JSON",()=>{
-  assert.match(app.innerHTML,/CH1-IMG-013_irina_neutral\\.png/);
+  assert.match(app.innerHTML,/CH1-IMG-013_irina_neutral\.png/);
 });
 test("Фоны S00 и S01 имеют реальные пути в CSS",()=>{
   const css=source("style.css");
-  assert.match(css,/CH1-IMG-002_entrance\\.png/);
-  assert.match(css,/CH1-IMG-005_technology_office\\.webp/);
+  assert.match(css,/CH1-IMG-002_entrance\.png/);
+  assert.match(css,/CH1-IMG-005_technology_office\.webp/);
 });
 const passed=checks.filter(x=>x.passed).length;
 console.log("\n"+passed+"/"+checks.length+" проверок пройдено");
