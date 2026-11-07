@@ -33,7 +33,9 @@
     bg_main_screen:"assets/backgrounds/CH1-IMG-001_main_screen.webp",
     irina_neutral:"assets/characters/CH1-IMG-013_irina_neutral.png",
     irina_friendly:"assets/characters/CH1-IMG-015_irina_friendly.png",
-    irina_focused:"assets/characters/CH1-IMG-016_irina_focused.png"
+    irina_focused:"assets/characters/CH1-IMG-016_irina_focused.png",
+    andrey_neutral:"assets/characters/CH1-IMG-012_andrey_neutral.png",
+    marina_neutral:"assets/characters/CH1-IMG-011_marina_neutral.png"
   };
   const sceneBackgroundIds={
     S00:"bg_entrance",
