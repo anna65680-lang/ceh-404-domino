@@ -155,3 +155,30 @@ li{padding-bottom:8px}
   background-size:cover;
   background-position:center;
 }
+
+/* Изображение реально присутствует в разметке: не маскируем его непрозрачной подложкой. */
+.scene-illustration {
+  margin:0 0 24px;
+  border:1px solid #628496;
+  border-radius:12px;
+  background:#132a3c;
+  overflow:hidden;
+}
+.scene-illustration img {
+  display:block;
+  width:100%;
+  height:clamp(200px,30vw,330px);
+  object-fit:cover;
+  object-position:center;
+}
+.scene-illustration figcaption {display:none;}
+.scene-illustration.image-missing img {display:none;}
+.scene-illustration.image-missing figcaption {
+  display:block;
+  padding:16px;
+  color:var(--bad);
+  overflow-wrap:anywhere;
+}
+@media(max-width:600px){
+  .scene-illustration img {height:200px;}
+}
