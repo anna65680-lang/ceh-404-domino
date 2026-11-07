@@ -22,10 +22,44 @@
       (id===undefined?'':' data-id="'+esc(id)+'"')+'>'+esc(label)+'</button>';
   }
   function note(html,type="") {return '<div class="notice '+esc(type)+'">'+html+'</div>';}
+  /* Единый выбор ассета. Пока реестр загружается или файла нет,
+     игровая логика и интерфейс продолжают работать со старой графикой. */
+  let assetRegistry=null;
+  const sceneBackgroundIds={
+    S00:"bg_entrance",
+    S01:"bg_technologist_office",S02:"bg_technologist_office",
+    S03:"bg_meeting_room",S05:"bg_meeting_room",
+    S04:"bg_workshop",S06:"bg_workshop",S07:"bg_workshop"
+  };
+  function assetPath(id,fallback) {
+    const item=assetRegistry&&assetRegistry.assets&&assetRegistry.assets[id];
+    const path=item&&typeof item.path==="string"?item.path:"";
+    return /^assets\/(characters|backgrounds|icons)\/[A-Za-z0-9_./-]+$/.test(path)&&!path.includes("..")
+      ?path:fallback;
+  }
+  function applySceneBackground() {
+    const scene=app.querySelector&&app.querySelector(".scene[data-scene]");
+    if(!scene)return;
+    const id=sceneBackgroundIds[game.scene];
+    if(!id)return;
+    const fallback="assets/backgrounds/"+id+".webp";
+    const chosen=assetPath(id,fallback);
+    if(chosen===fallback)return;
+    const picture=new Image();
+    picture.onload=()=>{
+      if(!scene.isConnected)return;
+      scene.style.setProperty("--registry-scene-image",'url("'+chosen+'")');
+    };
+    picture.onerror=()=>{};
+    picture.src=chosen;
+  }
   function avatar(characterKey) {
     const c=script.characters[characterKey];
     if(!c)return '';
-    return '<div class="character"><div class="character-art"><img alt="" loading="lazy" src="assets/characters/'+esc(c.portrait)+
+    const fallback="assets/characters/"+c.portrait;
+    const id=characterKey+"_"+(c.emotion||"neutral");
+    const image=assetPath(id,fallback);
+    return '<div class="character"><div class="character-art"><img alt="" loading="lazy" src="'+esc(image)+
       '" onerror="this.hidden=true"></div><div><strong>'+esc(c.name)+'</strong><small>'+esc(c.role)+'</small></div></div>';
   }
   function speech(key,text) {return '<div class="speech">'+avatar(key)+'<div class="speech-text">'+p(text)+'</div></div>';}
@@ -270,6 +304,7 @@
       sceneShell(game.scene,renderer())+
       '<div class="bottom-line"><span>Решения → условия → последствия</span>'+
       '<span>План Б · '+esc(script.version)+'</span></div>';
+    applySceneBackground();
     save();
   }
   function sceneAdvance(target) {
@@ -354,6 +389,18 @@
     }
   });
   render();
+  /* Локальный реестр: при file:// fetch может быть недоступен.
+     Игра остаётся автономной, а отсутствие JSON не блокирует сцены. */
+  if(typeof fetch==="function") {
+    fetch("assets/manifest.json").then(response=>{
+      if(!response.ok)throw new Error("Реестр не найден");
+      return response.json();
+    }).then(registry=>{
+      if(!registry||!registry.assets||typeof registry.assets!=="object")return;
+      assetRegistry=registry;
+      render();
+    }).catch(()=>{});
+  }
   /* Только для автоматических тестов, не является игровым API. */
   window.__CEH404_TEST__={getState:()=>JSON.parse(JSON.stringify(game)),getScene:()=>game.scene};
 })();
