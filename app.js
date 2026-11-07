@@ -59,7 +59,7 @@
     if(!c)return '';
     const fallback="assets/characters/"+c.portrait;
     const id=characterKey+"_"+(emotion||c.emotion||"neutral");
-    const image=assetPath(id,fallback);
+    const image=assetPath(id,assetPath(characterKey+"_neutral",fallback));
     return '<div class="character"><div class="character-art"><img alt="" loading="lazy" src="'+esc(image)+
       '" onerror="this.hidden=true"></div><div><strong>'+esc(c.name)+'</strong><small>'+esc(c.role)+'</small></div></div>';
   }
