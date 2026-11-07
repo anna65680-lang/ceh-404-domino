@@ -72,8 +72,11 @@
     const fallback="assets/characters/"+c.portrait;
     const id=characterKey+"_"+(c.emotion||"neutral");
     const image=assetPath(id,fallback);
-    return '<div class="character"><div class="character-art"><img alt="" loading="lazy" src="'+esc(image)+
-      '" onerror="this.hidden=true"></div><div><strong>'+esc(c.name)+'</strong><small>'+esc(c.role)+'</small></div></div>';
+    return '<div class="character"><div class="character-art"><img alt="'+esc(c.name)+'" loading="eager" decoding="async" src="'+esc(image)+
+      '" onerror="this.hidden=true;this.parentNode.classList.add(\'portrait-missing\')"'+
+      ' onload="this.parentNode.classList.add(\'portrait-loaded\')">'+
+      '<span class="portrait-error" role="status">Изображение не загружено</span></div>'+
+      '<div><strong>'+esc(c.name)+'</strong><small>'+esc(c.role)+'</small></div></div>';
   }
   function speech(key,text) {return '<div class="speech">'+avatar(key)+'<div class="speech-text">'+p(text)+'</div></div>';}
   function row(label,value) {return '<div class="metric"><span>'+esc(label)+'</span><b>'+esc(value)+'</b></div>';}
