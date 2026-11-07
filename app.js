@@ -38,6 +38,7 @@
       ?path:fallback;
   }
   function applySceneBackground() {
+    if(typeof Image!=="function")return;
     const scene=app.querySelector&&app.querySelector(".scene[data-scene]");
     if(!scene)return;
     const id=sceneBackgroundIds[game.scene];
