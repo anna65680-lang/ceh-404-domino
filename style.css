@@ -147,3 +147,11 @@ li{padding-bottom:8px}
   .report-grid,.investment-grid,.speaker-grid,.decision-grid{min-width:0}
   .btn.option{white-space:normal;overflow-wrap:anywhere}
 }
+
+/* Если фон из реестра проверен и загружен, его путь заменяет старый фон.
+   Без переменной действуют существующие правила каждой сцены. */
+.scene[data-scene][style*="--registry-scene-image"] {
+  background-image:linear-gradient(90deg,#122435f5,#0f2031e9),var(--registry-scene-image);
+  background-size:cover;
+  background-position:center;
+}
