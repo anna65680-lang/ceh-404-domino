@@ -1,7 +1,7 @@
 {
   "version": 1,
   "status": "partial",
-  "note": "Три фона и три портрета Ирины доступны в main. Остальные записи требуют проверки наличия файлов.",
+  "note": "В main добавлены утверждённые портреты Андрея и Марины; непроверенные фоны ещё требуют отдельной интеграции.",
   "assets": {
     "bg_entrance": {
       "type": "background",
@@ -34,15 +34,15 @@
       "type": "character",
       "character": "andrey",
       "emotion": "neutral",
-      "path": "assets/characters/andrey_neutral.png",
-      "status": "proposed"
+      "path": "assets/characters/CH1-IMG-012_andrey_neutral.png",
+      "status": "approved"
     },
     "marina_neutral": {
       "type": "character",
       "character": "marina",
       "emotion": "neutral",
-      "path": "assets/characters/marina_neutral.png",
-      "status": "proposed"
+      "path": "assets/characters/CH1-IMG-011_marina_neutral.png",
+      "status": "approved"
     },
     "bg_main_screen": {
       "type": "background",
