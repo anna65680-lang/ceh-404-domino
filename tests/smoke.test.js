@@ -33,8 +33,23 @@ click("pass");
 test("Пропуск сохраняет имя",()=>assert.equal(state().playerName,"Ваня"));
 click("next","S01");
 test("Точный текст поручения S01",()=>assert.match(app.innerHTML,/предложений больше, чем денег/));
-for(const id of ["offers","start","problems"])click("ask01",id);
-test("Три вопроса S01 в произвольном порядке",()=>assert.equal(state().askedS01.length,3));
+test("Переход к данным закрыт до завершения разговора",()=>{
+  assert.doesNotMatch(app.innerHTML,/data-action="next" data-id="S02"/);
+  click("next","S02");
+  assert.equal(state().scene,"S01");
+});
+for(const id of ["offers","start"])click("ask01",id);
+test("После двух вопросов данные ещё недоступны",()=>{
+  assert.doesNotMatch(app.innerHTML,/data-action="next" data-id="S02"/);
+  click("next","S02");
+  assert.equal(state().scene,"S01");
+});
+click("ask01","problems");
+test("Последний вопрос открывает кнопку изучения производственных данных",()=>{
+  assert.equal(state().askedS01.length,3);
+  assert.match(app.innerHTML,/data-action="next" data-id="S02"/);
+  assert.match(app.innerHTML,/Изучить производственные данные/);
+});
 click("next","S02");
 test("Девять исходных показателей",()=>assert.equal((app.innerHTML.match(/class="report-item"/g)||[]).length,9));
 for(const id of ["machine","insufficient","quality"])click("hypothesis",id);

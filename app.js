@@ -145,7 +145,10 @@
       });
       html+='</div>';
     }
-    html+='<div class="actions">'+button("Изучить производственные данные","next","S02","primary")+'</div>';
+    const allQuestionsAsked=s.questions.every(q=>game.askedS01.includes(q.id));
+    if(allQuestionsAsked) {
+      html+='<div class="actions">'+button("Изучить производственные данные","next","S02","primary")+'</div>';
+    }
     return html;
   }
   function renderS02() {
@@ -343,6 +346,7 @@
       S04:["S05"],S05:["S06"],S06:["S07"],S07:["S08"]};
     if(!(allowed[game.scene]||[]).includes(target))return;
     if(game.scene==="S00"&&!game.passIssued)return;
+    if(game.scene==="S01"&&!script.S01.questions.every(q=>game.askedS01.includes(q.id)))return;
     if(game.scene==="S02"&&!game.initialHypothesis)return;
     if(game.scene==="S04"&&(!logic.eligible(game)||!game.reviewAccepted))return;
     if(game.scene==="S05"&&!game.committeeDecision)return;
