@@ -128,3 +128,55 @@ li{padding-bottom:8px}
 @media(max-width:950px){.speaker-grid,.decision-grid{grid-template-columns:1fr}.speaker .character{min-width:0}.report-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:660px){.site-shell{padding:0 13px}.site-header{min-height:76px;align-items:flex-start;padding-top:14px}.logo{font-size:23px}.logo strong{font-size:27px}.logo small{font-size:9px}.header-right{display:none}.game-top{display:block}.progress{overflow-x:auto;padding-bottom:6px}.save-label{display:block;margin-top:7px}.scene-head{padding-top:18px}.scene-meta{font-size:10px}.panel{padding:17px}.intro-grid,.investment-grid,.review-columns{grid-template-columns:1fr}.pass-illustration{min-height:135px;font-size:75px}.pass-illustration span{font-size:9px}.report-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.report-item{padding:11px}.report-item strong{font-size:21px}.speech{display:block}.character{margin-bottom:10px}.bottom-line,.site-footer{display:block}.budget-strip .metric{min-width:calc(50% - 5px);flex:1}.btn{width:auto;max-width:100%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+
+/* Адаптивная вёрстка: одна игра, два способа отображения.
+   ПК от 961px; планшет 661-960px; телефон до 660px.
+   Не меняет правила игры, сценарии и состояние. */
+html,body{min-width:0}
+.site-shell,.panel,.scene,.intro-grid>*,.investment-grid>*,.review-columns>*,.speaker-grid>*,.decision-grid>*,.report-grid>*{min-width:0}
+.panel{overflow-wrap:anywhere}
+img{max-width:100%}
+@media(min-width:961px){
+  .site-shell{max-width:1280px;padding-left:34px;padding-right:34px}
+  .scene-head{padding-top:30px}
+  .panel{padding:clamp(24px,3vw,38px)}
+  .intro-grid{grid-template-columns:minmax(0,1.3fr) minmax(280px, .7fr)}
+  .actions .btn{min-height:46px}
+}
+@media(min-width:661px) and (max-width:960px){
+  .site-shell{padding-left:22px;padding-right:22px}
+  .intro-grid{grid-template-columns:minmax(0,1fr) minmax(220px,.8fr)}
+  .investment-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .speaker-grid,.decision-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:660px){
+  html{-webkit-text-size-adjust:100%}
+  body{overflow-x:hidden}
+  .site-shell{width:100%;max-width:none;padding:0 12px}
+  .site-header{gap:10px;min-height:66px;padding:12px 0;align-items:center}
+  .scene-head{padding:16px 1px 10px}
+  h1{font-size:clamp(26px,7.5vw,35px)}
+  h2{font-size:clamp(20px,5.6vw,25px)}
+  .panel{min-height:0;padding:16px;border-radius:13px}
+  .intro-grid,.investment-grid,.review-columns,.speaker-grid,.decision-grid{grid-template-columns:minmax(0,1fr)}
+  .report-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pass-illustration{min-height:130px}
+  .actions{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+  .actions .btn,.investment-buttons .btn,.choice-list .btn,.decision .btn,.speaker .btn{width:100%;min-height:46px;text-align:center}
+  .investment-buttons{display:grid;grid-template-columns:minmax(0,1fr)}
+  input:not([type="checkbox"]){width:100%;min-width:0;font-size:16px}
+  .speech{padding:13px}
+  .character{min-width:0}
+  .scene[data-scene]{background-position:center top}
+  .progress{max-width:100%;overflow-x:auto;scrollbar-width:thin}
+  .progress span{white-space:nowrap;flex:0 0 auto}
+  .budget-strip .metric{min-width:0;flex:1 1 calc(50% - 5px)}
+  .site-footer{line-height:1.7}
+}
+@media(max-width:380px){
+  .report-grid{grid-template-columns:minmax(0,1fr)}
+  .budget-strip .metric{flex-basis:100%}
+  .logo{font-size:21px}.logo strong{font-size:24px}
+  .scene-meta{gap:7px}
+}
