@@ -25,6 +25,16 @@
   /* Единый выбор ассета. Пока реестр загружается или файла нет,
      игровая логика и интерфейс продолжают работать со старой графикой. */
   let assetRegistry=null;
+  /* Утверждённые файлы, фактически существующие в main.
+     Показываются и при недоступном manifest.json. */
+  const bundledAssets={
+    bg_entrance:"assets/backgrounds/CH1-IMG-002_entrance.png",
+    bg_technologist_office:"assets/backgrounds/CH1-IMG-005_technology_office.webp",
+    bg_main_screen:"assets/backgrounds/CH1-IMG-001_main_screen.webp",
+    irina_neutral:"assets/characters/CH1-IMG-013_irina_neutral.png",
+    irina_friendly:"assets/characters/CH1-IMG-015_irina_friendly.png",
+    irina_focused:"assets/characters/CH1-IMG-016_irina_focused.png"
+  };
   const sceneBackgroundIds={
     S00:"bg_entrance",
     S01:"bg_technologist_office",S02:"bg_technologist_office",
@@ -35,7 +45,7 @@
     const item=assetRegistry&&assetRegistry.assets&&assetRegistry.assets[id];
     const path=item&&typeof item.path==="string"?item.path:"";
     return /^assets\/(characters|backgrounds|icons)\/[A-Za-z0-9_./-]+$/.test(path)&&!path.includes("..")
-      ?path:fallback;
+      ?path:(bundledAssets[id]||fallback);
   }
   function applySceneBackground() {
     if(typeof Image!=="function")return;
