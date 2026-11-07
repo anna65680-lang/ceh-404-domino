@@ -1,7 +1,7 @@
 {
   "version": 1,
   "status": "proposed",
-  "note": "Файлы CH1-IMG-002,011,012,013,015 импортированы из утверждённого реестра Google Drive; остальные записи остаются предложениями. Игровые реакции не менялись.",
+  "note": "Импортированы подтверждённые файлы CH1-IMG-002,011,012,013,015,016 из Google Диска; остальные записи предложены. Реакции персонажей не изменены.",
   "assets": {
     "bg_entrance": {
       "type": "background",
@@ -49,6 +49,13 @@
       "character": "irina",
       "emotion": "friendly",
       "path": "assets/characters/CH1-IMG-015_irina_friendly.png",
+      "status": "approved"
+    },
+    "irina_focused": {
+      "type": "character",
+      "character": "irina",
+      "emotion": "focused",
+      "path": "assets/characters/CH1-IMG-016_irina_focused.png",
       "status": "approved"
     }
   }
