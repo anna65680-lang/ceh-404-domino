@@ -182,3 +182,18 @@ li{padding-bottom:8px}
 @media(max-width:600px){
   .scene-illustration img {height:200px;}
 }
+
+/* Персонажи S03 — портреты должны читаться, а ошибка загрузки не скрываться. */
+.speaker .character{align-items:flex-start}
+.speaker .character-art{width:112px;height:140px;max-width:40%;border-radius:12px}
+.speaker .character-art img{object-fit:cover;object-position:top center}
+.character-art{position:relative}
+.portrait-error{display:none}
+.character-art.portrait-missing .portrait-error{
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  height:100%;padding:8px;font-size:11px;line-height:1.3;color:#ffe2ce;
+  background:#743d31;
+}
+@media(max-width:660px){
+  .speaker .character-art{width:112px;height:140px}
+}
