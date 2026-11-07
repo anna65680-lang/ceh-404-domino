@@ -33,7 +33,7 @@
   };
   function assetPath(id,fallback) {
     const item=assetRegistry&&assetRegistry.assets&&assetRegistry.assets[id];
-    const path=item&&item.status!=="not_use"&&typeof item.path==="string"?item.path:"";
+    const path=item&&item.status!=="not_use"&&item.status!=="do_not_use"&&item.status!=="Не использовать"&&typeof item.path==="string"?item.path:"";
     return /^assets\/(characters|backgrounds|icons)\/[A-Za-z0-9_./-]+$/.test(path)&&!path.includes("..")
       ?path:fallback;
   }
