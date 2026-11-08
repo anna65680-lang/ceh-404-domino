@@ -197,3 +197,18 @@ li{padding-bottom:8px}
 @media(max-width:660px){
   .speaker .character-art{width:112px;height:140px}
 }
+
+
+/* TEST ONLY — 2026-11-09: wider desktop layout and clearer character portraits.
+   No changes to scenario, state or production-report source. */
+@media (min-width: 961px) {
+  .site-shell { max-width: none; width: 100%; padding-inline: clamp(20px, 2.5vw, 54px); }
+  .speaker .character-art { width: 150px; height: 190px; max-width: 46%; }
+}
+@media (min-width: 661px) and (max-width: 960px) {
+  .site-shell { max-width: none; width: 100%; }
+  .speaker .character-art { width: 130px; height: 164px; max-width: 45%; }
+}
+@media (max-width: 660px) {
+  .speaker .character-art { width: 132px; height: 166px; max-width: 46%; }
+}
